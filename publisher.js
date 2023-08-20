@@ -1,3 +1,7 @@
+/**
+ * publisher.js
+ * MQTTにおける送信者
+ */
 var mqtt = require('mqtt');
 // var client = mqtt.connect('mqtt://mosquitto.org');
 var client = mqtt.connect({
@@ -6,12 +10,18 @@ var client = mqtt.connect({
     clientId: 'mqtt.publisher',
 });
 
+/**
+ * brokerへ接続
+ */
 client.on('connect', function(){
     console.log('publisher.connected.');
 });
 
+/**
+ * 10sごとに配信を行う
+ */
 setInterval(function(){
-    var message = Date.now().toString()/
+    var message = Date.now().toString();
     client.publish('topic0', message);
     console.log('publisher.publish:', message);
-}, 1000);
+}, 10000);
