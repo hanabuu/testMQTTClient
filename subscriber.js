@@ -21,7 +21,8 @@ client.on('connect', function(){
  * 購読要求
  * このメッセージを読みたい
  */
-client.subscribe('topic0', function(err, granted){
+// client.subscribe('topic0', function(err, granted){
+client.subscribe('G800001-a01', function(err, granted){
     console.log('subscriber.subscribed.');
 });
 
