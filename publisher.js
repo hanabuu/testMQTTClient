@@ -10,6 +10,20 @@ const client = mqtt.connect({
     clientId: 'mqtt.publisher',
 });
 
+const photoList = [
+    {
+        id: "001",
+        name: "photo001.jpg",
+        type: "jpg",
+        dataUrl: "http://localhost:3000/data/photo001.jpg"
+    },{
+        id: "002",
+        name: "photo002.jpg",
+        type: "jpg",
+        dataUrl: "http://localhost:3000/data/photo002.jpg"
+    }
+]
+
 /* 1. expressモジュールをロードし、インスタンス化してappに代入。*/
 const express = require("express");
 // 読み込んだexpressモジュールを実体化してインスタンス
@@ -38,6 +52,12 @@ app.get("/api/publish/a02", function(req, res, next){
     console.log("publish a02");
     client.publish('G800001-a02', "bbbb");
 });
+
+app.get("/api/publish/wild", function(req, res, next){
+    console.log("publish a02");
+    client.publish('a01/abcd', photoList.toString());
+});
+
 
 // client.publish('G800001-a01', "aaaaa");
 // client.publish('G800001-a02', "aaaaa");

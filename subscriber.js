@@ -27,6 +27,14 @@ client.subscribe('G800001-a01', function(err, granted){
 });
 
 /**
+ * ワイルドカード指定の購読要求
+ */
+client.subscribe('a01/#', function(err, granted){
+    console.log('subscriber.subscribed.');
+});
+
+
+/**
  * 配信された際の処理
  */
 client.on('message', function(topic, message){
